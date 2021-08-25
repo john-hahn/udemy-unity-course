@@ -488,6 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrustRate: 1000
+  rotationRate: 200
 --- !u!54 &1233286255
 Rigidbody:
   m_ObjectHideFlags: 0
