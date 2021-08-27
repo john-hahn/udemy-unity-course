@@ -29,55 +29,93 @@ public class Movement : MonoBehaviour
         ProcessRotation();
     }
 
+    // Processes the main thrusting through the input of spacebar
     void ProcessThrust() 
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * thrustRate * Time.deltaTime);
-            if (!mainThrusterParticles.isPlaying)
-            {
-                mainThrusterParticles.Play();
-            }
-           
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(engineThrust);
-            }
+            StartThrusting();
         }
         else
         {
-            mainThrusterParticles.Stop();
-            audioSource.Stop();
+            StopThrusting();
         }
     }
 
+    // Processes the rotation through the input of 'A' or 'D' for left and right
+    // rotation respectively
     void ProcessRotation() 
     {
         if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationRate);
-            if (!rightThrusterParticles.isPlaying)
-            {
-                rightThrusterParticles.Play();
-            }
+            StartLeftRotation();
         }
         
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotationRate);
-            if (!leftThrusterParticles.isPlaying)
-            {
-                leftThrusterParticles.Play();
-            }
+            StartRightRotation();
         }
 
         else
         {
-            leftThrusterParticles.Stop();
-            rightThrusterParticles.Stop();
+            StopRotation();
         }
     }
 
+    // Starts main thrusting by adding force in the positive-y direction and 
+    // plays the particle system and audio clip corresponding to it
+    void StartThrusting() 
+    {
+        rb.AddRelativeForce(Vector3.up * thrustRate * Time.deltaTime);
+        if (!mainThrusterParticles.isPlaying)
+        {
+            mainThrusterParticles.Play();
+        }
+            
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(engineThrust);
+        }
+    }
+
+    // Stops particle system and audio regarding the main thrusting
+    void StopThrusting() 
+    {
+        mainThrusterParticles.Stop();
+        audioSource.Stop();
+    }
+
+    // Starts left rotation by rotating in the positive-z direction and 
+    // plays the particle system corresponding to it
+    void StartLeftRotation() 
+    {
+        ApplyRotation(rotationRate);
+        if (!rightThrusterParticles.isPlaying)
+        {
+            rightThrusterParticles.Play();
+        }
+    }
+
+    // Starts right rotation by rotating in the negative-z direction and 
+    // plays the particle system corresponding to it
+    void StartRightRotation() 
+    {
+        ApplyRotation(-rotationRate);
+        if (!leftThrusterParticles.isPlaying)
+        {
+            leftThrusterParticles.Play();
+        }
+    }
+
+    // Stops all particle systems regarding rotation
+    void StopRotation() 
+    {
+        leftThrusterParticles.Stop();
+        rightThrusterParticles.Stop();
+    }
+
+    // Helper function to apply rotation in the z-direction by the inputted
+    // value
     void ApplyRotation(float rotationThisFrame) 
     {
         rb.freezeRotation = true;

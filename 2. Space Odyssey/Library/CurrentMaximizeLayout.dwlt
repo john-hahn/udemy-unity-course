@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 24861
+  controlID: 28459
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 24819
+  controlID: 28460
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 24793
+  controlID: 28434
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 88a2ffff94a2ffff78a4ffffccc3ffffbec6ffffaac7ffff10c8ffffc2cdffff56ceffff7ecfffff0cd0ffffb4d0ffff0cf0ffff54fbffff
+      m_ExpandedIDs: 94a2ffff78a4ffffccc3ffffbec6ffffaac7ffff10c8ffffc2cdffff56ceffff7ecfffff0cd0ffffb4d0ffff0cf0ffff54fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -452,21 +452,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Particles
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Particles
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/johnhahn/Desktop/GitHub/udemy-unity-course/2. Space Odyssey
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e8940000
-    m_LastClickedID: 38120
+    m_SelectedIDs: 08530000
+    m_LastClickedID: 21256
     m_ExpandedIDs: 000000000053000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
