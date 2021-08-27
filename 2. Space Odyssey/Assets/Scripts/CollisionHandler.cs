@@ -3,7 +3,27 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    [SerializeField] float delayTime = 1f;
+    [SerializeField] AudioClip levelSuccess;
+    [SerializeField] AudioClip levelFail;
+
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem failParticles;
+
+    AudioSource audioSource;
+
+    bool isTransitioning = false;
+
+        void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void OnCollisionEnter(Collision other) {
+        if (isTransitioning)
+        {
+            return;
+        }
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -11,7 +31,7 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case "Finish":
-                Debug.Log("Congrats, you finished!");
+                StartSuccessSequence();
                 break;
 
             case "Fuel":
@@ -19,14 +39,50 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             default:
-                ReloadLevel();
+                StartCrashSequence();
                 break;
         }
+    }
+
+    void StartSuccessSequence() 
+    {
+        isTransitioning = true;
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(levelSuccess);
+
+        successParticles.Play();
+    
+        GetComponent<Movement>().enabled = false;
+        Invoke("LoadNextLevel", delayTime);
+    }
+
+    void StartCrashSequence() 
+    {
+        isTransitioning = true;
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(levelFail);
+
+        failParticles.Play();
+
+        GetComponent<Movement>().enabled = false;
+        Invoke("ReloadLevel", delayTime);
     }
 
     void ReloadLevel() 
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
+    }
+
+    void LoadNextLevel() 
+    {
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextScene == SceneManager.sceneCountInBuildSettings) 
+        {
+            nextScene = 0;
+        }
+        SceneManager.LoadScene(nextScene);
     }
 }
