@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float thrustRate = 1000f;
     [SerializeField] float rotationRate = 1000f;
+    [SerializeField] float gravity = -9.8f;
     [SerializeField] AudioClip engineThrust;
 
     [SerializeField] ParticleSystem mainThrusterParticles;
@@ -20,6 +21,7 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        Physics.gravity = new Vector3(0, gravity, 0);
     }
 
     // Update is called once per frame
